@@ -128,36 +128,7 @@ app.post('/login', (req, res) => {
 
 });
 
-// app.post('/workouts', (req, res) => {
 
-//     pool.getConnection((err, connection) => {
-//         if(err) throw err;
-//         const body = req.body;
-//         userID = body.id;
-//         workout = body.workout;
-//         eName = body.eName;
-//         eSet = body.eSet;
-//         eRep = body.eRep;
-//         eWeight = body.eWeight;
-//         eRest = body.eRest;
-
-
-
-//         connection.query(`SELECT * FROM users WHERE id=?`,[userID], (err, result) => {
-//         connection.release(); // return the connection to pool
-//         if(result && result.length){res.send("id already exist")}
-//         else{
-//             connection.query("INSERT INTO users(workout) VALUES(?,?,?)", [userName,userEmail,userPass], (err,result) =>{
-//                 if(err) throw err;
-//                 res.send("success");
-
-//             });
-//         }
-//         });
-        
-//     });
-
-// });
 
 
 
