@@ -3,6 +3,6 @@
 # How to run
 
 * Open Xampp and start Apache and Mysql. 
-* Create a database and table then configure pool setting in app.js
+* Create a database and table then configure pool settings in app.js
 * Type 'node app.js' in terminal to start listening for requests in port:3000.
 * Use postman to test get, post, put, and delete
