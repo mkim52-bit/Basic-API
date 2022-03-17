@@ -50,13 +50,18 @@ app.get("/users/:id", (req,res) => {
         const userID = req.params.id; 
         
         const query = "SELECT * FROM users WHERE id = ?";
-        con.query(query,[userID],(err,rows) => {
+        con.query(query,[userID],(err,result) => {
         
             con.release();
             if(err) throw err;
 
-            console.log("in /all");
-            res.send(JSON.stringify(rows[0]));
+            if(result && result.length){
+                res.send(JSON.stringify(result[0]));
+            }
+            else{
+                res.send(JSON.stringify("User not found"));
+            }
+            
     
     
      });
@@ -128,15 +133,53 @@ app.post('/login', (req, res) => {
 
 });
 
+app.delete('/:id', (req, res) => {
 
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        connection.query('DELETE FROM users WHERE id = ?', [req.params.id], (err, result) => {
+            connection.release() // return the connection to pool
+            if (!err) {
+                res.send(`user ID ${[req.params.id]} has been removed.`)
+            } else {
+                console.log(err)
+            }
+            
+            
+        })
+    })
+});
 
+app.put('/update/:id', (req, res) => {
 
+    pool.getConnection((err, connection) => {
+        if(err) throw err
+        //console.log(userID);
+        const userID = req.params.id; 
 
+        const body = req.body;
+        userName = body.name;
+        userEmail = body.email;
+        userPass = body.password;
+        
 
+     
+        connection.query('UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?',[userName,userEmail,userPass,userID], (err, result) => {
+            connection.release() // return the connection to pool
+            if(!err){
+                res.send(`user ID ${[userID]} has been updated.`);
+            }
+            else{
+                res.send(`error`);
+                console.log(err);
+            }
+          
 
+        })
 
-
-
+        console.log(req.body)
+    })
+})
 
 
 app.listen(port, () => {
