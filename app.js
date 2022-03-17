@@ -1,4 +1,3 @@
-const e = require("express");
 const express = require("express");
 const mysql = require("mysql");
 
@@ -10,7 +9,7 @@ const port = process.env.PORT || "3000";
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 
-//app.use(express.text());
+
 
 
 
