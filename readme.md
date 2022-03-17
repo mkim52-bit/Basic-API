@@ -1,1 +1,7 @@
-Simple Nodejs Api using Express and Xampp to run server locally. To run open Xampp and start Apache and Mysql. Next, type 'node app.js' to start listening for requests in port:3000.
+# NodeJS API made with Express 
+
+# How to run
+
+* Open Xampp and start Apache and Mysql. 
+* Type 'node app.js' to start listening for requests in port:3000.
+* Use postman to test get, post, put, and delete
